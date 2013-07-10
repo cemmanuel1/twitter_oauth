@@ -1,4 +1,4 @@
-<div class="container">
+
   <h1>Tweet Now! 2: Multi-User</h1>
 
   <%
@@ -10,8 +10,10 @@
   <% if @access_token %>
     <div>
       <p>
+        <p> Welcome <%= @access_token.params[:screen_name] %></p>
         <strong>token:</strong> <%= @access_token.token %><br>
         <strong>secret:</strong> <%= @access_token.secret %><br>
+
       </p>
       <p>
         <button><a href="/sign_out">Sign Out</a></button>
@@ -21,4 +23,4 @@
     <button><a href="/sign_in">Sign In with Twitter</a></button>
   <% end %>
   
-</div>
+
