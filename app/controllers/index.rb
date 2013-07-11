@@ -26,25 +26,20 @@ get '/auth' do
  session[:user_id] = @user.id
 
  redirect "/#{@user.username}"
- 
+
 end
 
-get "/:user" do
+get "/:username" do
   @user = User.find_by_username(params[:username])
-  puts "8" * 80
-  p @user
-  p @user.username
   erb :create_tweet
 end
 
-get "/:user/tweets" do 
+get "/:username/tweets" do 
 
-  @form = params[:tweet]
   @me = User.find_by_username(params[:username])
-  @me = Twitter::Client.new(
-    :oauth_token => @access_token.token,
-    :oauth_token_secret => @access_token.secret
-    )
-  @me.update(@form)
-  erb :index
+  # tweet = Tweet.create(tweet: params[:tweet], user_id: @me.id)
+   @me.tweet_stuff(params[:tweet])
+
+   @me
+ erb :yay
 end
